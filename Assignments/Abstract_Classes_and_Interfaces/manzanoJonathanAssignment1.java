@@ -16,27 +16,35 @@ public class manzanoJonathanAssignment1 {
 
     // Declare sides variables
     double side1, side2, side3;
+    String color;
+    boolean filled;
 
     System.out.println("Welcome to Triangle creator!");
-    System.out.println("Please eneter the length for the 3 sides to " +
-        "create a triangle");
+    System.out.println("Please eneter the following...");
     System.out.print("Side 1: ");
     side1 = input.nextDouble();
     System.out.print("Side 2: ");
     side2 = input.nextDouble();
     System.out.print("Side 3: ");
     side3 = input.nextDouble();
+    System.out.print("Color: ");
+    color = input.next();
+    System.out.print("Filled? ('true' or 'false'): ");
+    filled = input.nextBoolean();
 
-    Triangle test = new Triangle(side1, side2, side3);
 
+    if (side1 + side2 > side3 && side1 + side3 > side2
+        && side2 + side3 > side1) {
+      Triangle triangle = new Triangle(side1, side2, side3);
+    } else {
+      System.out.println("Invalid side lengths");
+    }
   }
 }
 class Triangle extends GeometricObject {
   private double side1;
   private double side2;
   private double side3;
-  private double perimeter;
-  private double area;
 
   public Triangle() {
   }
@@ -57,26 +65,17 @@ class Triangle extends GeometricObject {
     setFilled(filled);
   }
 
-  // Method to check if all 3 sides create a valid triangle
-  public boolean isValid() {
-    if (side1 + side2 <= side3 || side1 + side3 <= side2
-        || side2 + side3 <= side1)
-        return false;
-    else
-        return true;
-  }
-
   @Override
   public double getPerimeter() {
-    perimeter = side1 + side2 + side3;
-    return perimeter;
+    return side1 + side2 + side3;
   }
 
   @Override
   public double getArea() {
-    area = Math.sqrt(perimeter * (perimeter - side1) * (perimeter - side2)
+    double perimeter = getPerimeter();
+
+    return Math.sqrt(perimeter * (perimeter - side1) * (perimeter - side2)
         * (perimeter - side3));
-    return area;
   }
 }
 
