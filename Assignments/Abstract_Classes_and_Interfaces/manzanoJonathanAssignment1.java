@@ -33,15 +33,15 @@ public class manzanoJonathanAssignment1 {
     char selection;
 
     // Declare circle variables
-    double radius;
+    double radius = 0.0;
 
     // Declare rectangle variables
     double width, height;
 
     // Declare triangle variables
-    double side1 = 0;
-    double side2 = 0;
-    double side3 = 0;
+    double side1 = 0.0;
+    double side2 = 0.0;
+    double side3 = 0.0;
     boolean valid = false;
 
     System.out.println("Welcome to the Geometric Object Creator!");
@@ -61,8 +61,19 @@ public class manzanoJonathanAssignment1 {
       switch(selection) {
         case 'c':
         case 'C':
-          System.out.print("Radius length: ");
-          radius = input.nextDouble();
+
+          // Validate radius length greater than zero
+          while(!valid) {
+            System.out.print("Radius length: ");
+            radius = input.nextDouble();
+            // Validate user's input
+            if (radius > 0) {
+              valid = true;
+            } else {
+              System.out.println("Radius cannot be negative!\n");
+            }
+          }
+
           System.out.print("Color: ");
           color = input.next();
           System.out.print("Filled? ('true' or 'false'): ");
@@ -127,6 +138,62 @@ public class manzanoJonathanAssignment1 {
     } while(quit);
     input.close();
   }
+}
+
+abstract class GeometricObject {
+  private String color = "white";
+  private boolean filled;
+  private java.util.Date dateCreated;
+
+  /** Construct a default geometric object */
+  protected GeometricObject() {
+  dateCreated = new java.util.Date();
+  }
+
+  /** Construct a geometric object with color and filled value */
+  protected GeometricObject(String color, boolean filled) {
+    dateCreated = new java.util.Date();
+    this.color = color;
+    this.filled = filled;
+  }
+
+  /** Return color */
+  public String getColor() {
+    return color;
+  }
+
+  /** Set a new color */
+  public void setColor(String color) {
+  this.color = color;
+  }
+
+  /** Return filled. Since filled is boolean,
+  * the getter method is named isFilled */
+  public boolean isFilled() {
+  return filled;
+  }
+
+  /** Set a new filled */
+  public void setFilled(boolean filled) {
+  this.filled = filled;
+  }
+
+  /** Get dateCreated */
+  public java.util.Date getDateCreated() {
+  return dateCreated;
+  }
+
+  @Override
+  public String toString() {
+  return "created on " + dateCreated + "\ncolor: " + color +
+  " and filled: " + filled;
+  }
+
+  /** Abstract method getArea */
+  public abstract double getArea();
+
+  /** Abstract method getPerimeter */
+  public abstract double getPerimeter();
 }
 
 class Triangle extends GeometricObject {
@@ -283,59 +350,3 @@ class Rectangle extends GeometricObject {
   }
 }
 
-
-abstract class GeometricObject {
-  private String color = "white";
-  private boolean filled;
-  private java.util.Date dateCreated;
-
-  /** Construct a default geometric object */
-  protected GeometricObject() {
-  dateCreated = new java.util.Date();
-  }
-
-  /** Construct a geometric object with color and filled value */
-  protected GeometricObject(String color, boolean filled) {
-    dateCreated = new java.util.Date();
-    this.color = color;
-    this.filled = filled;
-  }
-
-  /** Return color */
-  public String getColor() {
-    return color;
-  }
-
-  /** Set a new color */
-  public void setColor(String color) {
-  this.color = color;
-  }
-
-  /** Return filled. Since filled is boolean,
-  * the getter method is named isFilled */
-  public boolean isFilled() {
-  return filled;
-  }
-
-  /** Set a new filled */
-  public void setFilled(boolean filled) {
-  this.filled = filled;
-  }
-
-  /** Get dateCreated */
-  public java.util.Date getDateCreated() {
-  return dateCreated;
-  }
-
-  @Override
-  public String toString() {
-  return "created on " + dateCreated + "\ncolor: " + color +
-  " and filled: " + filled;
-  }
-
-  /** Abstract method getArea */
-  public abstract double getArea();
-
-  /** Abstract method getPerimeter */
-  public abstract double getPerimeter();
-}
