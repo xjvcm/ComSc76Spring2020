@@ -24,34 +24,55 @@ public class manzanoJonathanAssignment2 {
       //   output.write(i);
 
     }
+
+
   }
 }
 
-class BitOutputStream {
+public static class BitOutputStream {
   // Add attributes
-  protected FileOutputStream file;
-  protected byte bite = 00000000;
+  private FileOutputStream output;
+  protected int bite = 0;
   protected int count = 0;
+  //The bits are all zeros except the last one
+  //
+  protected int mask = 1;
 
   // Creates a BitOutputStream to write bits to the file.
-  BitOutputStream(FileOutputStream file) {
-    this.file = file;
+  public BitOutputStream(File file) throws IOException {
+    output = new FileOutputStream(file);
   }
 
   // Writes a bit '0' or '1' to the output stream.
-  public void writeBit(char bit) {
-    bite += (byte)bit;
+  public void writeBit(char bit) throws IOException{
+    count++;
     bite = bite << 1;
-    count += 1;
+
+    // bite += (byte)bit;
+
+    if (bit == '1') {
+      bite = bite | mask;
+    }
+
+    if (count == 8) {
+      file.write(bite);
+      count = 0;
+    }
   }
 
   // Write a string of bits to the ouput stream.
-  public void writeBit(String bit) {
-
+  public void writeBit(String bitString) throws IOException {
+    for (int i = 0; i <bitstring.length(); i++)
+    writeBit(bitString.charAt(i));
   }
 
   // This method must be invoked to close the stream.
   public void close() {
+    if (count > 0) {
+      bite = bite << (8 - count);
+      output.write(value);
+    }
 
+    output.close();
   }
 }
