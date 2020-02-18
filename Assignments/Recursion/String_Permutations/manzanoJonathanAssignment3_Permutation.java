@@ -5,7 +5,7 @@
  *
  * Assignment: Recursion Part II - String Permutation
  *
- * ~ Description goes here ~
+ * Write a recursive method to print all permutations of a string.
  *
  */
 
@@ -34,6 +34,7 @@ public class manzanoJonathanAssignment3_Permutation {
 		input.close();
   }
 
+  // recursive helper method
   public static void displayPermutation(String s) {
     displayPermutation(s, "");
   }
@@ -46,10 +47,10 @@ public class manzanoJonathanAssignment3_Permutation {
 
     for (int i = 0; i < s1.length(); i++) {
 
-      // ith character of s1
+      // current character at index (i) of s1
       char ch = s1.charAt(i);
 
-      // Rest of the string after excluding the 8th character
+      // Rest of the string after excluding the character at current index
       String ros = s1.substring(0, i) + s1.substring(i + 1);
 
       // recursive call
