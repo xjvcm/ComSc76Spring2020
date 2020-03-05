@@ -19,3 +19,16 @@
  * their y-coordinates, respectively.
  *
  */
+import java.util.Comparator;
+import java.io.Serializable;
+
+public class manzanoJonathanAssignment5 {
+  public static void main(String[] args) {
+    System.out.println("Hello World!");
+  }
+}
+
+class Point implements Comparator<Point>, Serializable {
+  private double x;
+  private double y;
+}
