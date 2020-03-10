@@ -67,7 +67,6 @@ public class manzanoJonathanAssignment5LSQ {
     while (iterator.hasNext()) {
       System.out.println(iterator.next().toString());
     }
-
   }
 }
 
