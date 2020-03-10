@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class manzanoJonathanAssignment5 {
+public class manzanoJonathanAssignment5LSQ {
   public static void main(String[] args) {
     // Instantiate ArrayList object with List interface
     List<Point> coordinates = new ArrayList<>();
