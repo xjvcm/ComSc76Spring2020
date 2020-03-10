@@ -28,26 +28,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class manzanoJonathanAssignment5 {
-  public static void main(final String[] args) {
+  public static void main(String[] args) {
     // Instantiate ArrayList object with List interface
-    final List<Point> coordinates = new ArrayList<>();
+    List<Point> coordinates = new ArrayList<>();
 
     // Instantiate Random object to create random double number
-    final Random rand = new Random();
+    Random rand = new Random();
 
     // Instantiate Comparator object to use in collection sort method
-    final CompareY comparator = new CompareY();
+    CompareY comparator = new CompareY();
 
     // Create 100 random double points and populate ArrayList
     for (int i = 0; i <= 100; i++) {
-      final double random1 = 1 + rand.nextDouble() * 100;
-      final double random2 = 1 + rand.nextDouble() * 100;
+      double random1 = 1 + rand.nextDouble() * 100;
+      double random2 = 1 + rand.nextDouble() * 100;
 
       coordinates.add(i, new Point(random1, random2));
     }
 
     // Invoke sort method to sorty by increasing X values
-    Collections.sort(coordinates);
+    coordinates.sort();
 
     // Instantiate Iterator to iterate through ArrayList
     Iterator<Point> iterator = coordinates.iterator();
@@ -81,7 +81,7 @@ class Point implements Comparable<Point> {
   }
 
   // two-arg constructor
-  Point(final double x, final double y) {
+  Point(double x, double y) {
     this.x = x;
     this.y = y;
   }
@@ -92,7 +92,7 @@ class Point implements Comparable<Point> {
   }
 
   // Setter for X
-  public void setX(final int x) {
+  public void setX(int x) {
     this.x = x;
   }
 
@@ -102,7 +102,7 @@ class Point implements Comparable<Point> {
   }
 
   // Setter for Y
-  public void setY(final int y) {
+  public void setY(int y) {
     this.y = y;
   }
 
@@ -114,7 +114,7 @@ class Point implements Comparable<Point> {
 
   // Implement Comparable Interface's compareTo method
   @Override
-  public int compareTo(final Point point) {
+  public int compareTo(Point point) {
     if (this.getX() < point.getX()) {
       return -1;
     } else if (this.getX() > point.getX()) {
@@ -133,7 +133,7 @@ class CompareY implements Comparator<Point> {
 
   // Implement Comparator Interface compare method
   @Override
-  public int compare(final Point point1, final Point point2) {
+  public int compare(Point point1, Point point2) {
     if (point1.getY() < point2.getY()) {
       return -1;
     } else if (point1.getY() > point2.getY()) {
