@@ -47,7 +47,7 @@ public class manzanoJonathanAssignment5 {
     }
 
     // Invoke sort method to sorty by increasing X values
-    coordinates.sort();
+    Collections.sort(coordinates);
 
     // Instantiate Iterator to iterate through ArrayList
     Iterator<Point> iterator = coordinates.iterator();
