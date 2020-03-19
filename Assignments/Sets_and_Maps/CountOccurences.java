@@ -1,4 +1,12 @@
 /**
+ * Programmer: Jonathan Manzano
+ * 
+ * Date: Thursday 19 March 2020
+ * 
+ * Assignment: Sets and Map
+ * 
+ * Description:
+ * 
  * (Count the occurrences of words in a text file) 
  * 
  * Rewrite Listing 21.9 to read
@@ -19,7 +27,6 @@ import java.util.TreeMap;
 
 public class CountOccurences {
   public static void main(String[] args) {
-    
     // Check command-line argument length
     if (args.length != 1) {
       System.out.println("Usage: java CountOccurences " +
@@ -28,14 +35,18 @@ public class CountOccurences {
     }
     
     try {
-      // Instantiate file object to hold file passed in argument
+      // Instantiate File object to hold file passed in argument
       File file = new File(args[0]);
 
+      // Instantiate Scanner object to read contents of file
       Scanner input = new Scanner(file);
 
+      // Instantiate TreeMap object to hold words as key and count as value
       TreeMap<String, Integer> treeMap = new TreeMap<>();
+
       while (input.hasNext()) {
         String line = input.nextLine();
+
         String[] words = line.split("[\\s\\p{P}]+");
   
         for (int i = 0; i < words.length; i++) {
@@ -52,6 +63,7 @@ public class CountOccurences {
           }
         }
       }
+
       Set<Map.Entry<String, Integer>> entrySet = treeMap.entrySet();
   
       // Retrieve an entry set for the tree map
@@ -62,10 +74,12 @@ public class CountOccurences {
       for (Map.Entry<String, Integer> entry: entrySet) {
         System.out.println(entry.getValue() + "\t" + entry.getKey());
       }
+
     } catch (FileNotFoundException ex) {
+
       System.out.println("File does not exist!");
+      
       System.exit(1);
     }
-
   }
 }
