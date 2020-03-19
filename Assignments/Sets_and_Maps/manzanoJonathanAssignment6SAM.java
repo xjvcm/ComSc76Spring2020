@@ -14,25 +14,55 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class manzanoJonathanAssignment6SAM {
   public static void main(String[] args) {
     // Check command-line argument length
     if (args.length != 1) {
-      System.out.println("Usage: java Exercise_21_08 textFileName");
+      System.out.println("Usage: java manzanoJonathanAssignment6SAM " +
+          "textFileName");
       System.exit(1);
     }
 
     // Instantiate file object to hold file passed in argument
     File file = new File(args[0]);
 
-    Map<String, Integer> map = new TreeMap<>();
+    TreeMap<String, Integer> treeMap = new TreeMap<>();
 
     try {
       Scanner input = new Scanner(file);
-    } catch (IOException e) {
-      
+
+      while (input.hasNext()) {
+        String line = input.nextLine();
+        String[] words = line.split("[ @!~{}\\[\\]$#^&*\n\t\r.,;?'\")(]");
+
+        for (int i = 0; i < words.length; i++) {
+          if (words[i].trim().length() > 0 && words[i].trim().matches("[A-Z|a-z]+")) {
+            String key = words[i].toLowerCase();
+
+            if (treeMap.get(key) != null) {
+              int count = treeMap.get(key);
+              count++;
+              treeMap.put(key, count);
+            } else {
+              treeMap.put(key, 1);
+            }
+          }
+        }
+      }
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
+
+    Set<Map.Entry<String, Integer>> entrySet = treeMap.entrySet();
+
+    System.out.println("\nDisplay words and their count in " +
+        " ascending order of the wors");
+
+    for (Map.Entry<String, Integer> entry: entrySet) {
+      System.out.println(entry.getValue() + "\t" + entry.getKey());
     }
   }
 }
