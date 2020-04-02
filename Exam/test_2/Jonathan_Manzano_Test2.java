@@ -24,17 +24,16 @@ public class Jonathan_Manzano_Test2 {
 
     mergeSort(list);
 
-    System.out.println("Array of Intgers sorted with Merge Sort:");
+    System.out.println("Array of Integers sorted with Merge Sort:");
     System.out.print("[");
     for (int i = 0; i < list.length; i++){
       System.out.print(list[i] + (i == list.length - 1 ? "" : ", "));
     }
     System.out.println("]");
 
-    System.out.println();
-    System.out.println();
+    System.out.print("\n\n");
 
-    System.out.println("Array of Circles sorted by area with Merge Sort");
+    System.out.println("Array of Circles sorted by area with Merge Sort:");
     Circle[] list1 = {new Circle(2), new Circle(3), new Circle(2),
         new Circle(5), new Circle(6), new Circle(1), new Circle(2),
         new Circle(3), new Circle(14), new Circle(12)};
@@ -43,7 +42,8 @@ public class Jonathan_Manzano_Test2 {
     
     System.out.println("[");
     for (int i = 0; i < list1.length; i++) {
-      System.out.printf("\tCircle %d Area: %.2f%n", i + 1, list1[i].getArea());
+      System.out.printf("\tCircle %d Area: %.2f%s%n", i + 1, list1[i].getArea(),
+          (i == list.length - 1 ? "" : ","));
     }
     System.out.println("]");
   }
@@ -207,7 +207,7 @@ class CircleComparator implements Comparator<Circle>, Serializable {
     double area1 = c1.getArea();
     double area2 = c2.getArea();
     
-    // Compare Areas
+    // Compare areas
     if (area1 < area2) {
       return -1;
     } else if (area1 == area2) {
