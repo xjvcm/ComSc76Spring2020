@@ -27,6 +27,8 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import javax.sound.sampled.SourceDataLine;
+
 
 class Point implements Comparable<Point> {
   // Declare X and Y attributes
@@ -150,6 +152,9 @@ class Pair {
     return Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
   }
 
+  /** Return the distance of the closest pair of points in pointsOrderedOnX[low,
+   * high]. This is a recursive method. pointsOrderedOnX and pointsOrderedOnY
+   * are not changed in the subsequent recursive calls. */
   public static Pair distance(Point[] pointsOrderedOnX, int low, int high,
       Point[] pointsOrderedOnY) {
     
@@ -191,7 +196,6 @@ class Pair {
         stripR.add(pointsOrderedOnY[i]);
       }
     }
-
     
     double d3 = distance;
     int r = 0;
@@ -244,9 +248,41 @@ public class Jonathan_Manzano_EfficientAlgorithms {
           (int)(Math.random() * 1000000));
     }
 
+    System.out.println("Brute Force:");
+    // p1 and p2 are the indices in the points' array. 
+    int p1 = 0; // Initial two points
+    int p2 = 1;
+    // initialize shortestDistance
+    double shortestDistance = Pair.distance(points[p1].getX(), points[p1].getY(),
+        points[p2].getX(), points[p2].getY());
+    
+    // Compute distance for every two points
+    for (int i = 0; i < points.length; i++) {
+      for (int j = i + 1; j < points.length; j++) {
+        double distance = Pair.distance(points[i].getX(), points[i].getY(),
+              points[j].getX(), points[j].getY()); // Find distance
+            
+        if (shortestDistance > distance) {
+          p1 = i; // Update p1
+          p2 = j; // Update p2
+          shortestDistance = distance; // Update shortestDistance
+        }
+      }
+    }
+
+    // Display Result
+    System.out.printf("The closest two points are [%.2f, %.2f] and" + 
+        " [%.2f, %.2f]%n",points[p1].getX(), points[p1].getY(),
+            points[p2].getX(), points[p2].getY());
+
+    System.out.println("Distance: " + Pair.distance(points[p1].getX(),
+        points[p1].getY(), points[p2].getX(), points[p2].getY()));
+    System.out.println();
+
+    System.out.println("Divide and Conquer:");
     Pair pair = Pair.getClosestPair(points);
-    System.out.println(pair.getP1());
-    System.out.println(pair.getP1());
-    System.out.println(pair.getDistance());
+    System.out.println("The closest two points are " + pair.getP1() + " and " +
+        pair.getP2());
+    System.out.println("Distance: " + pair.getDistance());
   }
 }
