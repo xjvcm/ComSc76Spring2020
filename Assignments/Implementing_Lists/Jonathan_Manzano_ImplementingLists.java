@@ -15,7 +15,7 @@
  * requirements.
  */
 
-import java.lang.Iterable;
+import java.util.Iterator;
 
 interface MyList<E> extends Iterable<E> {
   /** Add a new element at the end of this list */
@@ -280,7 +280,7 @@ class MyLinkedList<E> extends MyAbstractList<E> {
 
   @Override /** Return true if this list contains the element e */
   public boolean contains(E e) {
-    boolean contains;
+    boolean contains = false;
 
     if (size == 0) {
       return contains;
@@ -354,8 +354,16 @@ class MyLinkedList<E> extends MyAbstractList<E> {
   @Override /** Replace the element at the specified position 
    *  in this list with the specified element. */
   public E set(int index, E e) {
-    System.out.println("Implementation left as an exercise");
-    return null;
+    if (index < 0 || index > size -1) {
+      return null;
+    } else {
+      Node<E> current = head;
+      for (int i = 0; i < index; i++) {
+        current = current.next;
+      }
+      current.element = e;
+      return current.element;
+    }
   }
 
   @Override /** Override iterator() defined in Iterable */
@@ -403,6 +411,74 @@ class MyLinkedList<E> extends MyAbstractList<E> {
 
 public class Jonathan_Manzano_ImplementingLists {
   public static void main(String[] args) {
-    System.out.println("Hello World!");
+    MyLinkedList<String> list = new MyLinkedList<>();
+
+    // Add elements to the list
+    list.add("Tamanna Browne");
+    list.add("Riyad Francis");
+    list.add("Tiana Healy");
+    list.add("Maureen Richards");
+    list.add("Mindy Kline");
+    list.add("Rohit Stevenson");
+    list.add("Henrietta Hurst");
+    list.add("Reo Keenan");
+    list.add("Kylie Lucero");
+    list.add("Fox Rasmussen");
+
+    System.out.println(list + "\n");
+
+    // getFirst Method
+    System.out.println("The first name on the list is " + list.getFirst());
+
+    // getLast Method
+    System.out.println("The last name on the list is " + list.getLast());
+
+    // addFirst Method
+    list.addFirst("Jez Finch");
+    System.out.println("\n\"Jez Finch\" is add to the front of the list\n"
+        + list);
+
+    // addLast Method
+    list.addLast("Monet Bird");
+    System.out.println("\n\"Monet Bird\" is added to the end of the list\n"
+        + list);
+
+    // removeFirst Method
+    list.removeFirst();
+    System.out.println("\n\"Jez Finch\" is removed from the front of the list\n"
+        + list);
+
+    // removeLast Method
+    list.removeLast();
+    System.out.println("\n\"Monet Bird\" is removed from the end of the list\n"
+        + list);
+
+    // remove
+    System.out.println("\nThe name removed at index 5 is " + list.remove(5));
+
+    // toString
+    System.out.println("\nInvoking toString method: \n" + list.toString());
+
+    // Contains
+    System.out.println("\nDoes the list contain \"Henrietta Hurst\"? " +
+        list.contains("Henrietta Hurst")); 
+    
+    // Get
+    System.out.println("\nThe name at index 7 is " + list.get(7));
+
+    //indexOf
+    System.out.println("\n\"Riyad Francis\" is at index "
+        + list.indexOf("Riyad Francis"));
+
+    // set
+    list.set(4, "Cayden Higgs");
+    System.out.println("\n\"Cayden Higgs\" replaced \"Mindy Kline\" at index" 
+        + "4\n");
+    System.out.println(list);
+    
+    //Clear
+    System.out.println("Clear list with clear() method");
+    list.clear();
+    System.out.println(list + "]");
   }
 }
