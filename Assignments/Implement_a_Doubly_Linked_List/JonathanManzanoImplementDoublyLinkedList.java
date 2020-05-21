@@ -28,6 +28,10 @@
  * and the latter to the element at the specified index.
  * 
  * Write a driver program to test this new version of the TwoWayLinkedList class.
+ * 
+ * 
+ * TODO:
+ * 
  */
 
 import java.util.Iterator;
@@ -173,7 +177,10 @@ class TwoWayLinkedList<E> extends MyAbstractList<E> {
     else {
       newNode.next = null;
       newNode.previous = tail;
-      tail.next = newNode; // Link the new with the last node
+      tail.next = newNode; 
+
+
+      // Link the new with the last node
       tail = tail.next; // tail now points to the last node
     }
 
